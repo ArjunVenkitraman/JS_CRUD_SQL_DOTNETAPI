@@ -1,7 +1,9 @@
 function loadTable() {
     const xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "https://www.melivecode.com/api/users");
+    xhttp.open("GET", "http://localhost:3000/employees");
     xhttp.send();
+    //https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest 
+    //XMLHttpRequest Methods and Properties
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         console.log(this.responseText);
@@ -35,6 +37,7 @@ function loadTable() {
   loadTable();
 
   function showUserCreateBox() {
+    //https://sweetalert2.github.io/v9.html
     Swal.fire({
       title: "Create user",
       html:
@@ -57,7 +60,7 @@ function loadTable() {
     const email = document.getElementById("email").value;
   
     const xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "https://www.melivecode.com/api/users/create");
+    xhttp.open("POST", "http://localhost:3000/employees/");
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhttp.send(
       JSON.stringify({
@@ -80,7 +83,7 @@ function loadTable() {
   function showUserEditBox(id) {
     console.log(id);
     const xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "https://www.melivecode.com/api/users/" + id);
+    xhttp.open("GET", `http://localhost:3000/employees/${id}`);
     xhttp.send();
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
@@ -122,74 +125,7 @@ function loadTable() {
     const email = document.getElementById("email").value;
   
     const xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "https://www.melivecode.com/api/users/update");
-    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhttp.send(
-      JSON.stringify({
-        id: id,
-        fname: fname,
-        lname: lname,
-        username: username,
-        email: email,
-        avatar: "https://www.melivecode.com/users/1.png",
-      })
-    );
-    xhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        const objects = JSON.parse(this.responseText);
-        Swal.fire(objects["message"]);
-        loadTable();
-      }
-    };
-  }
-
-  function showUserEditBox(id) {
-    console.log(id);
-    const xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "https://www.melivecode.com/api/users/" + id);
-    xhttp.send();
-    xhttp.onreadystatechange = function () {
-        //request is complete(4) and success(200)
-      if (this.readyState == 4 && this.status == 200) {
-        const objects = JSON.parse(this.responseText);
-        const user = objects["user"];
-        console.log(user);
-        Swal.fire({
-          title: "Edit User",
-          html:
-            '<input id="id" type="hidden" value=' +
-            user["id"] +
-            ">" +
-            '<input id="fname" class="swal2-input" placeholder="First" value="' +
-            user["fname"] +
-            '">' +
-            '<input id="lname" class="swal2-input" placeholder="Last" value="' +
-            user["lname"] +
-            '">' +
-            '<input id="username" class="swal2-input" placeholder="Username" value="' +
-            user["username"] +
-            '">' +
-            '<input id="email" class="swal2-input" placeholder="Email" value="' +
-            user["email"] +
-            '">',
-          focusConfirm: false,
-          preConfirm: () => {
-            userEdit();
-          },
-        });
-      }
-    };
-  }
-  
-  function userEdit() {
-    const id = document.getElementById("id").value;
-    const fname = document.getElementById("fname").value;
-    const lname = document.getElementById("lname").value;
-    const username = document.getElementById("username").value;
-    const email = document.getElementById("email").value;
-  
-    const xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "https://www.melivecode.com/api/users/update");
+    xhttp.open("PUT", `http://localhost:3000/employees/`);
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhttp.send(
       JSON.stringify({
@@ -211,8 +147,9 @@ function loadTable() {
   }
 
   function userDelete(id) {
+    console.log(id);
     const xhttp = new XMLHttpRequest();
-    xhttp.open("DELETE", "https://www.melivecode.com/api/users/delete");
+    xhttp.open(`DELETE`, `http://localhost:3000/employees/${id}`);
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhttp.send(
       JSON.stringify({
@@ -222,8 +159,21 @@ function loadTable() {
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4) {
         const objects = JSON.parse(this.responseText);
-        Swal.fire(objects["message"]);
-        loadTable();
+       // Swal.fire(objects["message"]);
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+          if (result.value) {
+              objects["message"];
+          }
+      })
       }
+      //loadTable();
     };
   }
