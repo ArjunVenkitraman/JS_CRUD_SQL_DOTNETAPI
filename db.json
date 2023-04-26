@@ -83,6 +83,14 @@
       "lname": "Aba",
       "username": "katarina.aba@melivecode.com",
       "avatar": "https://www.melivecode.com/users/12.png"
+    },
+    {
+      "fname": "John",
+      "lname": "Johnny",
+      "username": "john",
+      "email": "john@gmail.com",
+      "avatar": "https://www.melivecode.com/users/1.png",
+      "id": 13
     }
   ]
 }

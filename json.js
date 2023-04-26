@@ -88,48 +88,49 @@ function loadTable() {
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         const objects = JSON.parse(this.responseText);
-        const user = objects["user"];
-        console.log(user);
+        //const user = objects["objects"];
+        console.log(objects);
         Swal.fire({
           title: "Edit User",
           html:
-            '<input id="id" type="hidden" value=' +
-            user["id"] +
-            ">" +
+            '<input id="id" type="hidden" value="' +
+            objects[`${id}`] +
+            '">' +
             '<input id="fname" class="swal2-input" placeholder="First" value="' +
-            user["fname"] +
+            objects["fname"] +
             '">' +
             '<input id="lname" class="swal2-input" placeholder="Last" value="' +
-            user["lname"] +
+            objects["lname"] +
             '">' +
             '<input id="username" class="swal2-input" placeholder="Username" value="' +
-            user["username"] +
+            objects["username"] +
             '">' +
             '<input id="email" class="swal2-input" placeholder="Email" value="' +
-            user["email"] +
+            objects["email"] +
             '">',
           focusConfirm: false,
           preConfirm: () => {
-            userEdit();
+            userEdit(id);
           },
         });
       }
     };
   }
   
-  function userEdit() {
-    const id = document.getElementById("id").value;
+  function userEdit(id) {
+    //const id = document.getElementById("id").value;
     const fname = document.getElementById("fname").value;
     const lname = document.getElementById("lname").value;
     const username = document.getElementById("username").value;
     const email = document.getElementById("email").value;
-  
+    console.log(id);
+    console.log(fname);
     const xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", `http://localhost:3000/employees/`);
+    xhttp.open("PUT", `http://localhost:3000/employees/${id}`);
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhttp.send(
       JSON.stringify({
-        id: id,
+       // id: id,
         fname: fname,
         lname: lname,
         username: username,
