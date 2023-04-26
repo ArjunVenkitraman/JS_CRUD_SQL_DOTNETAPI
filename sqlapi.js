@@ -54,13 +54,13 @@ function userCreate() {
   const useremail = document.getElementById("useremail").value;
   const password = document.getElementById("password").value;
   const mobile = document.getElementById("mobile").value;
-
+  console.log(id);
   const xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "https://localhost:7126/api/Registrations");
+  xhttp.open("POST", "https://localhost:7126/api/Registrations/");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.send(
     JSON.stringify({
-      id: id,
+      //id: id,
       username: username,
       useremail: useremail,
       password: password,
@@ -79,49 +79,50 @@ function userCreate() {
 function showUserEditBox(id) {
   console.log(id);
   const xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "https://localhost:7126/api/Registrations/" + id);
+  xhttp.open("GET", `https://localhost:7126/api/Registrations/${id}`);
   xhttp.send();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       const objects = JSON.parse(this.responseText);
-      const user = objects["Registration"];
+      //const user = objects["Registration"];
       console.log(objects);
       Swal.fire({
         title: "Edit User",
         html:
-          '<input id="id" type="hidden" value=' +
-          user["id"] +
-          ">" +
+          '<input id="id" type="hidden" value="' +
+          objects[`${id}`] +
+          '">' +
           '<input id="username" class="swal2-input" placeholder="Name" value="' +
-          user["username"] +
+          objects["username"] +
           '">' +
           '<input id="useremail" class="swal2-input" placeholder="email" value="' +
-          user["useremail"] +
+          objects["useremail"] +
           '">' +
           '<input id="password" class="swal2-input" placeholder="Password" value="' +
-          user["password"] +
+          objects["password"] +
           '">' +
           '<input id="mobile" class="swal2-input" placeholder="Mobile" value="' +
-          user["mobile"] +
+          objects["mobile"] +
           '">',
         focusConfirm: false,
         preConfirm: () => {
-          userEdit();
+          userEdit(id);
         },
       });
     }
   };
 }
 
-function userEdit() {
-  const id = document.getElementById("id").value;
+function userEdit(id) {
+  //const id = document.getElementById("id").value;
   const username = document.getElementById("username").value;
   const useremail = document.getElementById("useremail").value;
   const password = document.getElementById("password").value;
   const mobile = document.getElementById("mobile").value;
-
+  console.log(id);
+  console.log(username);
   const xhttp = new XMLHttpRequest();
-  xhttp.open("PUT", "https://localhost:7126/api/Registrations/update");
+  xhttp.open("PUT", `https://localhost:7126/api/Registrations/${id}`);
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.send(
     JSON.stringify({
@@ -142,8 +143,9 @@ function userEdit() {
 }
 
 function userDelete(id) {
+  console.log(id);
   const xhttp = new XMLHttpRequest();
-  xhttp.open("DELETE", "https://localhost:7126/api/Registrations/delete");
+  xhttp.open("DELETE", `https://localhost:7126/api/Registrations/${id}`);
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.send(
     JSON.stringify({
