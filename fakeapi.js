@@ -46,6 +46,7 @@ function loadTable() {
         '<input id="lname" class="swal2-input" placeholder="Last">' +
         '<input id="username" class="swal2-input" placeholder="Username">' +
         '<input id="email" class="swal2-input" placeholder="Email">',
+      focusConfirm: false,
       preConfirm: () => {
         userCreate();
       },
@@ -107,6 +108,7 @@ function loadTable() {
             '<input id="email" class="swal2-input" placeholder="Email" value="' +
             user["email"] +
             '">',
+          focusConfirm: false,
           preConfirm: () => {
             userEdit();
           },
