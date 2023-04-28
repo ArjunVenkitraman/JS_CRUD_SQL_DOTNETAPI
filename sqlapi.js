@@ -68,7 +68,7 @@ function userCreate() {
     })
   );
   xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
+    if (this.status == 200) {
       const objects = JSON.parse(this.responseText);
       Swal.fire(objects["message"]);
       loadTable();
@@ -134,7 +134,7 @@ function userEdit(id) {
     })
   );
   xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
+    if (this.status == 200) {
       const objects = JSON.parse(this.responseText);
       Swal.fire(objects["message"]);
       loadTable();
@@ -154,9 +154,21 @@ function userDelete(id) {
   );
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4) {
-      const objects = JSON.parse(this.responseText);
-      Swal.fire(objects["message"]);
-      loadTable();
+      //const objects = JSON.parse(this.responseText);
+      //Swal.fire(objects["message"]);
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.value) {
+            objects["message"];
+        }
+    })
     }
   };
 }

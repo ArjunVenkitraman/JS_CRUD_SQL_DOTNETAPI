@@ -1,3 +1,6 @@
+//https://javascript.info/xmlhttprequest#http-headers
+// npm install -g json-server
+// json-server --watch db.json in Terminal(command prompt)
 function loadTable() {
     const xhttp = new XMLHttpRequest();
     xhttp.open("GET", "http://localhost:3000/employees");
