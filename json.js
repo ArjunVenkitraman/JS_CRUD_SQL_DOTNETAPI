@@ -1,12 +1,8 @@
-//https://javascript.info/xmlhttprequest#http-headers
-// npm install -g json-server
-// json-server --watch db.json in Terminal(command prompt)
 function loadTable() {
     const xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "http://localhost:3000/employees");
+    xhttp.open("GET", "http://localhost:3000/buildingSale");
     xhttp.send();
-    //https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest 
-    //XMLHttpRequest Methods and Properties
+ 
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         console.log(this.responseText);
@@ -15,13 +11,13 @@ function loadTable() {
         for (let object of objects) {
           trHTML += "<tr>";
           trHTML += "<td>" + object["id"] + "</td>";
-          trHTML +=
-            '<td><img width="50px" src="' +
-            object["avatar"] +
-            '" class="avatar"></td>';
-          trHTML += "<td>" + object["fname"] + "</td>";
-          trHTML += "<td>" + object["lname"] + "</td>";
-          trHTML += "<td>" + object["username"] + "</td>";
+          trHTML += "<td>" + object["BuildingType"] + "</td>";
+          trHTML += "<td>" + object["Address"] + "</td>";
+          trHTML += "<td>" + object["AreaSqFt"] + "</td>";
+          trHTML += "<td>" + object["ConstructedYear"] + "</td>";
+          trHTML += "<td>" + object["Rate"] + "</td>";
+          trHTML += "<td>" + object["Image"] + "</td>";
+
           trHTML +=
             '<td><button type="button" class="btn btn-outline-secondary" onclick="showUserEditBox(' +
             object["id"] +
@@ -40,15 +36,16 @@ function loadTable() {
   loadTable();
 
   function showUserCreateBox() {
-    //https://sweetalert2.github.io/v9.html
     Swal.fire({
       title: "Create user",
       html:
         '<input id="id" type="hidden">' +
-        '<input id="fname" class="swal2-input" placeholder="First">' +
-        '<input id="lname" class="swal2-input" placeholder="Last">' +
-        '<input id="username" class="swal2-input" placeholder="Username">' +
-        '<input id="email" class="swal2-input" placeholder="Email">',
+        '<input id="BuildingType" class="swal2-input" placeholder="First">' +
+        '<input id="Address" class="swal2-input" placeholder="Last">' +
+        '<input id="AreaSqFt" class="swal2-input" placeholder="Username">' +
+        '<input id="ConstructedYear" class="swal2-input" placeholder="Email">'+
+        '<input id="Rate" class="swal2-input" placeholder="Email">'+
+        '<input id="Image" class="swal2-input" placeholder="Email">',
       preConfirm: () => {
         userCreate();
       },
@@ -56,27 +53,36 @@ function loadTable() {
   }
   
   function userCreate() {
-    const fname = document.getElementById("fname").value;
-    const lname = document.getElementById("lname").value;
-    const username = document.getElementById("username").value;
-    const email = document.getElementById("email").value;
+    const BuildingType = document.getElementById("BuildingType").value;
+    const Address = document.getElementById("Address").value;
+    const AreaSqFt = document.getElementById("AreaSqFt").value;
+    const ConstructedYear = document.getElementById("ConstructedYear").value;
+    const Rate = document.getElementById("Rate").value;
+    const Image = document.getElementById("Image").value;
   
     const xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "http://localhost:3000/employees/");
+    xhttp.open("POST", "http://localhost:3000/buildingSale/");
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhttp.send(
       JSON.stringify({
-        fname: fname,
-        lname: lname,
-        username: username,
-        email: email,
-        avatar: "https://www.melivecode.com/users/1.png",
+        BuildingType: BuildingType,
+        Address: Address,
+        AreaSqFt: AreaSqFt,
+        ConstructedYear: ConstructedYear,
+        Rate: Rate,
+        Image: Image,
+
       })
     );
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         const objects = JSON.parse(this.responseText);
-        Swal.fire(objects["message"]);
+        Swal.fire({ 
+        title:"Hello",
+        icon:"hello",
+        showConfirmButton:false,
+        timer:1500,
+      });
         loadTable();
       }
     };
@@ -85,7 +91,7 @@ function loadTable() {
   function showUserEditBox(id) {
     console.log(id);
     const xhttp = new XMLHttpRequest();
-    xhttp.open("GET", `http://localhost:3000/employees/${id}`);
+    xhttp.open("GET", `http://localhost:3000/buildingSale/${id}`);
     xhttp.send();
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
@@ -98,17 +104,22 @@ function loadTable() {
             '<input id="id" type="hidden" value="' +
             objects[`${id}`] +
             '">' +
-            '<input id="fname" class="swal2-input" placeholder="First" value="' +
-            objects["fname"] +
+            '<input id="BuildingType" class="swal2-input" placeholder="First" value="' +
+            objects["BuildingType"] +
             '">' +
-            '<input id="lname" class="swal2-input" placeholder="Last" value="' +
-            objects["lname"] +
+            '<input id="Address" class="swal2-input" placeholder="Last" value="' +
+            objects["Address"] +
             '">' +
-            '<input id="username" class="swal2-input" placeholder="Username" value="' +
-            objects["username"] +
+            '<input id="AreaSqFt" class="swal2-input" placeholder="AreaSqFt" value="' +
+            objects["AreaSqFt"] +
             '">' +
-            '<input id="email" class="swal2-input" placeholder="Email" value="' +
-            objects["email"] +
+            '<input id="ConstructedYear" class="swal2-input" placeholder="ConstructedYear" value="' +
+            objects["ConstructedYear"] +
+            '">'+
+            '<input id="Rate" class="swal2-input" placeholder="Rate" value="' +
+            objects["Rate"] +
+            '">'+'<input id="Image" class="swal2-input" placeholder="Image" value="' +
+            objects["Image"] +
             '">',
           preConfirm: () => {
             userEdit(id);
@@ -117,65 +128,90 @@ function loadTable() {
       }
     };
   }
-  
   function userEdit(id) {
-    //const id = document.getElementById("id").value;
-    const fname = document.getElementById("fname").value;
-    const lname = document.getElementById("lname").value;
-    const username = document.getElementById("username").value;
-    const email = document.getElementById("email").value;
+    const BuildingType = document.getElementById("BuildingType").value;
+    const Address = document.getElementById("Address").value;
+    const AreaSqFt = document.getElementById("AreaSqFt").value;
+    const ConstructedYear = document.getElementById("ConstructedYear").value;
+    const Rate = document.getElementById("Rate").value;
+    const Image = document.getElementById("Image").value;
+    
     console.log(id);
-    console.log(fname);
+    console.log(BuildingType);
+    
     const xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", `http://localhost:3000/employees/${id}`);
+    xhttp.open("PUT", `http://localhost:3000/buildingSale/${id}`);
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhttp.send(
       JSON.stringify({
-       // id: id,
-        fname: fname,
-        lname: lname,
-        username: username,
-        email: email,
-        avatar: "https://www.melivecode.com/users/1.png",
+        BuildingType: BuildingType,
+        Address: Address,
+        AreaSqFt: AreaSqFt,
+        ConstructedYear: ConstructedYear,
+        Rate: Rate,
+        Image: Image,
       })
     );
+    
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         const objects = JSON.parse(this.responseText);
-        Swal.fire(objects["message"]);
-        loadTable();
+        Swal.fire({
+          title: 'Success',
+          text: objects["message"],
+          icon: 'success',
+          timer: 3000, // Display the message for 3 seconds
+          timerProgressBar: true, // Show the progress bar
+          didOpen: () => {
+            Swal.showLoading(); // Show a loading animation until the timer expires
+          },
+          willClose: () => {
+            loadTable(); // Reload the table after editing the user
+          }
+        });
       }
     };
   }
 
   function userDelete(id) {
     console.log(id);
-    const xhttp = new XMLHttpRequest();
-    xhttp.open(`DELETE`, `http://localhost:3000/employees/${id}`);
-    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhttp.send(
-      JSON.stringify({
-        id: id,
-      })
-    );
-    xhttp.onreadystatechange = function () {
-      if (this.readyState == 4) {
-        const objects = JSON.parse(this.responseText);
-       // Swal.fire(objects["message"]);
-        Swal.fire({
-          title: 'Are you sure?',
-          text: "You won't be able to revert this!",
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-          if (result.value) {
-              objects["message"];
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        const xhttp = new XMLHttpRequest();
+        xhttp.open(`DELETE`, `http://localhost:3000/buildingSale/${id}`);
+        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhttp.send(
+          JSON.stringify({
+            id: id,
+          })
+        );
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4) {
+            const objects = JSON.parse(this.responseText);
+            Swal.fire({
+              title: 'Deleted!',
+              text: 'The user has been deleted.',
+              icon: 'success',
+              timer: 5000, // Display the message for 3 seconds
+              timerProgressBar: true, // Show the progress bar
+              didOpen: () => {
+                Swal.showLoading(); // Show a loading animation until the timer expires
+              },
+              willClose: () => {
+                loadTable(); // Reload the table after deleting the user
+              }
+            });
           }
-      })
+        };
       }
-      //loadTable();
-    };
+    });
   }
+  
