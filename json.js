@@ -23,11 +23,11 @@ function loadTable() {
           trHTML +=
             '<td><button type="button" class="btn btn-outline-secondary" onclick="showUserEditBox(' +
             object["id"] +
-            ')">Edit</button>';
+            ')"><i class="fa-solid fa-file-pen text-warning" "></i></button>&nbsp';
           trHTML +=
             '<button type="button" class="btn btn-outline-danger" onclick="userDelete(' +
             object["id"] +
-            ')">Del</button></td>';
+            ')"><i class="fa-solid fa-trash  fa-sm" style="color: #ff3300;"></i></button></td>';
           trHTML += "</tr>";
         }
         document.getElementById("mytable").innerHTML = trHTML;
@@ -61,7 +61,7 @@ function loadTable() {
               '<td><button type="button" class="btn btn-outline-secondary" onclick="showUserEditBox(' +
               object["id"] +
               ')">Edit</button>';
-            trHTML +=
+            trHTML += 
               '<button type="button" class="btn btn-outline-danger" onclick="userDelete(' +
               object["id"] +
               ')">Del</button></td>';
@@ -74,23 +74,22 @@ function loadTable() {
       }
     };
     xhttp.open(
-      "GET",
-      `http://localhost:3000/buildingSale?BuildingType=${BuildingType}`
+      "GET",`http://localhost:3000/buildingSale?BuildingType=${BuildingType}`
     );
     xhttp.send();
   }
 
   function showUserCreateBox() {
     Swal.fire({
-      title: "Create user",
+      title: "Load building",
       html:
-        '<input id="id" type="hidden">' +
-        '<input id="BuildingType" class="swal2-input" placeholder="BuildingType">' +
-        '<input id="Address" class="swal2-input" placeholder="Address">' +
-        '<input id="AreaSqFt" class="swal2-input" placeholder="AreaSqFt">' +
-        '<input id="ConstructedYear" class="swal2-input" type="date" placeholder="ConstructedYear">'+
-        '<input id="Rate" class="swal2-input" placeholder="Rate">'+
-        '<input id="Image" class="swal2-input" placeholder="Image">',
+        '<input id="id" type="hidden"><br>' +
+        '<i class="fa-solid fa-building-wheat fa-xl"></i><input id="BuildingType" class="swal2-input" placeholder="BuildingType"><br>' +
+        '<i class="fa-solid fa-address-card fa-xl"></i><input id="Address" class="swal2-input" placeholder="Address"><br>' +
+        '<i class="fa-solid fa-chart-area fa-xl"></i></i><input id="AreaSqFt" class="swal2-input" placeholder="AreaSqFt"><br>' +
+        '<i class="fa-solid fa-calendar-days fa-xl"></i><input id="ConstructedYear" class="swal2-input" type="date" placeholder="ConstructedYear" style="width:62%"><br>'+
+        '<i class="fa-solid fa-sack-dollar fa-xl"></i><input id="Rate" class="swal2-input" placeholder="Rate"><br>'+
+        '<i class="fa-solid fa-image fa-xl"></i><input type="file" style="width:282px" id="Image" class="swal2-input"  placeholder="Image">',
       preConfirm: () => {
         userCreate();
       },
@@ -105,6 +104,8 @@ function loadTable() {
     const Rate = document.getElementById("Rate").value;
     const Image = document.getElementById("Image").value;
   
+   
+    if(validate()==true){
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "http://localhost:3000/buildingSale/");
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -125,14 +126,79 @@ function loadTable() {
         Swal.fire({ 
         title:"Hello",
         icon:"hello",
-        showConfirmButton:false,
+        showConfirmButton:true,
         timer:1500,
       });
         loadTable();
       }
     };
   }
+  }
 
+  function validate() {
+    //field values
+    const BuildingType = document.getElementById("BuildingType").value;
+    const Address = document.getElementById("Address").value;
+    const AreaSqFt = document.getElementById("AreaSqFt").value;
+    const ConstructedYear = document.getElementById("ConstructedYear").value;
+    const Rate= document.getElementById("Rate").value;
+
+ //regular expressions
+ const areaReg = /^[a-zA-Z\s]{2,32}$/;
+ const yearReg = /^[a-zA-Z\s]{2,32}$/;
+ const rateReg =/^[a-zA-Z\s]{2,32}$/;
+
+ if (BuildingType == "" || Address == "" || AreaSqFt == "" || ConstructedYear == "" || Rate == "") {
+     Swal.fire({
+         title: "Fields should not be empty",
+         showConfirmButton: true,
+         icon: "error"
+     }).then((res)=> {
+        if(res.value){
+          showUserCreateBox();
+        }
+     });
+     return false;
+ }
+ if (!BuildingType.match(areaReg)) {
+
+     Swal.fire({
+         title: "Invalid Input",
+         text: "Name should only contain alphabetical letters",
+         icon: "error",
+         showConfirmButton: true,
+     })
+     return false;
+ }
+ if (!Address.match(yearReg)) {
+
+     Swal.fire({
+         title: "Invalid Input",
+         text: "Age should only contain numbers",
+         icon: "error",
+         showConfirmButton: true
+     })
+     return false;
+ }
+ if (!Rate.match(rateReg)) {
+     Swal.fire({
+         title: "Invalid Input",
+         text: "Please follow the format (dd-mm-yyyy) for the date  field",
+         icon: "error",
+         showConfirmButton: true
+     })
+     return false;
+ }
+
+ if (BuildingType.match(areaReg) && Address.match(yearReg) && Rate.match(rateReg)) {
+     Swal.fire({
+         title: "Successfully Created",
+         icon: "success",
+         showConfirmButton: true
+     })
+     return true;
+ }
+}
   function showUserEditBox(id) {
     console.log(id);
     const xhttp = new XMLHttpRequest();
@@ -144,7 +210,7 @@ function loadTable() {
         //const user = objects["objects"];
         console.log(objects);
         Swal.fire({
-          title: "Edit User",
+          title: "Edit Building",
           html:
             '<input id="id" type="hidden" value="' +
             objects[`${id}`] +

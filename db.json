@@ -2,21 +2,57 @@
   "buildingSale": [
     {
       "BuildingType": "Residential Building",
-      "Address": "A/14 Thudiyalor,Coimbatore",
-      "AreaSqFt": "10000",
-      "ConstructedYear": "2023-05-10",
+      "Address": "Kongu,Coimbatore",
+      "AreaSqFt": "20000",
+      "ConstructedYear": "2022-05-10",
       "Rate": "10L",
-      "Image": "https://www.melivecode.com/users/1.png",
+      "Image": "https://api.makemyhouse.com/public/Media/rimage/1024/designers_project/1583579237_37.jpg?watermark=false",
       "id": 1
     },
     {
-      "BuildingType": "hi",
-      "Address": "",
-      "AreaSqFt": "",
-      "ConstructedYear": "",
-      "Rate": "",
-      "Image": "",
+      "BuildingType": "Educational Buildings",
+      "Address": "A Mallinam,Palakkad",
+      "AreaSqFt": "1000",
+      "ConstructedYear": "2022-03-10",
+      "Rate": "20L",
+      "Image": "https://images.unsplash.com/photo-1616512659455-111d3367649f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
       "id": 2
+    },
+    {
+      "BuildingType": "Institutional Buildings",
+      "Address": "A/14 Thudiyalor,Coimbatore",
+      "AreaSqFt": "10000",
+      "ConstructedYear": "2023-05-10",
+      "Rate": "30L",
+      "Image": "https://www.nasa.gov/sites/default/files/thumbnails/image/ksc-20180226-vab.jpg",
+      "id": 3
+    },
+    {
+      "BuildingType": "Assembly Buildings",
+      "Address": "A/14 Thudiyalor,Coimbatore",
+      "AreaSqFt": "10000",
+      "ConstructedYear": "2023-05-10",
+      "Rate": "50L",
+      "Image": "https://img.freepik.com/free-photo/glassclad-skyscrapers-central-mumbai-reflecting-sunset-hues-blue-hour_469504-15.jpg?w=740&t=st=1683109175~exp=1683109775~hmac=46d7c97806aa9148ec5821996ba7af458125b318508529234408849796507b4a",
+      "id": 4
+    },
+    {
+      "BuildingType": "sdf",
+      "Address": "sdf",
+      "AreaSqFt": "sdf",
+      "ConstructedYear": "2023-05-17",
+      "Rate": "as",
+      "Image": "C:\\fakepath\\8104.jpg",
+      "id": 5
+    },
+    {
+      "BuildingType": "sdf",
+      "Address": "d9087979",
+      "AreaSqFt": "fgh",
+      "ConstructedYear": "2023-05-16",
+      "Rate": "fgh54765",
+      "Image": "C:\\fakepath\\8104.jpg",
+      "id": 6
     }
   ]
 }
