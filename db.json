@@ -30,20 +30,11 @@
     {
       "BuildingType": "Assembly Buildings",
       "Address": "A/14 Thudiyalor,Coimbatore",
-      "AreaSqFt": "10000",
-      "ConstructedYear": "2023-05-10",
-      "Rate": "50L",
+      "AreaSqFt": "70000",
+      "ConstructedYear": "2023-05-01",
+      "Rate": "70L",
       "Image": "assets/images/assembly.jpg",
       "id": 4
-    },
-    {
-      "BuildingType": "Residential Building",
-      "Address": "A/14 Thudiyalor,Coimbatore",
-      "AreaSqFt": "10000",
-      "ConstructedYear": "2023-05-02",
-      "Rate": "30L",
-      "Image": "assets/images/Residential.webp",
-      "id": 5
     }
   ]
 }

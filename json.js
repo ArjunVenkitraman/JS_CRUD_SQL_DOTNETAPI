@@ -150,10 +150,11 @@ function userCreate() {
           title: "Hello",
           icon: "success",
         });
-        loadTable();
       }
     };
   }
+  loadTable();
+
 }
 
 function validate() {
@@ -353,7 +354,7 @@ function validate() {
   return true;
 }
 
-// Function to delete a user
+// ****************************************************************** Function to delete a user ********************************************************************* 
 function userDelete(id) {
   console.log(id);
   Swal.fire({
@@ -365,17 +366,13 @@ function userDelete(id) {
     cancelButtonColor: "#d33",
     confirmButtonText: "Yes, delete it!",
   }).then((result) => {
-    if (result.value) {
+    if (result.isConfirmed) {
       const xhttp = new XMLHttpRequest();
       xhttp.open(`DELETE`, `http://localhost:3000/buildingSale/${id}`);
       xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-      xhttp.send(
-        JSON.stringify({
-          id: id,
-        })
-      );
+      xhttp.send();
       xhttp.onreadystatechange = function () {
-        if (this.readyState == 4) {
+        if (this.readyState == 4 && this.status == 200) {
           const objects = JSON.parse(this.responseText);
           Swal.fire({
             title: "Deleted!",
@@ -384,6 +381,7 @@ function userDelete(id) {
             timer: 5000,
             timerProgressBar: true,
           });
+          loadTable();
         }
       };
     }

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <style>
+    .container {
+      width: 300px;
+      margin: 0 auto;
+      margin-top: 100px;
+    }
+
+    .container input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .container button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <p id="error-message" class="error"></p>
+    <button onclick="validateLogin()">Login</button>
+  </div>
+
+  <script>
+    function validateLogin() {
+  var username = document.getElementById("username").value;
+  var password = document.getElementById("password").value;
+  var errorMessage = document.getElementById("error-message");
+
+  // Regular expressions for validation
+  var usernameRegex = /^[a-zA-Z0-9]{5,}$/; // Alphanumeric with at least 5 characters
+  var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // Alphanumeric with at least 8 characters and 1 letter + 1 number
+
+  if (!usernameRegex.test(username) || !passwordRegex.test(password)) {
+    errorMessage.textContent = "Invalid username or password format.";
+  } else if (username !== "admin" || password !== "password") {
+    errorMessage.textContent = "Invalid username or password.";
+  } else {
+    // Successful login
+    alert("Login successful!");
+  }
+}
+
+  </script>
+</body>
+</html>
