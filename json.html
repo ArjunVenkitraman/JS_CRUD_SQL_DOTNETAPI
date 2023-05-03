@@ -11,18 +11,39 @@
     <title>CRUD FROM API</title>
 
     <link href="index.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/dfc6c5ead1.js" crossorigin="anonymous"></script>
+    <style>
+     
+    </style>
   </head>
   <body>
 
-    <nav class="navbar navbar-dark bg-mynav">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">My App</a>
-      </div>
+    <nav class="navbar">
+      <a class="navbar-brand" href="#">
+        <img src="./8104.jpg" alt="Logo">
+        BUILDSALE
+      </a>
+      
     </nav>
+
 
     <div class="container">
       <div class="d-flex bd-highlight mb-3">
-        <div class="me-auto p-2 bd-highlight"><h2>Users</div>
+        <div class="me-auto p-2 bd-highlight"><h2>CRUD</div>
+          <!-- Search button -->
+          <form action="">
+            <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+                <div class="input-group">
+                    <input type="search" placeholder="BuildingType" aria-describedby="button-addon1"
+                        class="form-control border-0 bg-light" id="searchInput">
+                    <div class="input-group-append">
+                        <button id="button-addon1" type="button" class="btn btn-link text-primary"
+                            onclick="userSearch(document.getElementById('searchInput').value)"><i
+                                class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </form>
         <div class="p-2 bd-highlight">
           <button type="button" class="btn btn-secondary" onclick="showUserCreateBox()">Create</button>
         </div>
@@ -39,6 +60,8 @@
               <th scope="col">ConstructedYear</th>
               <th scope="col">Rate</th>
               <th scope="col">Image</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody id="mytable">

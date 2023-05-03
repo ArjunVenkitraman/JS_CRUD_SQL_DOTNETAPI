@@ -1,85 +1,22 @@
 {
   "buildingSale": [
     {
-      "BuildingType": "sdfddd",
-      "Address": "sdf",
-      "AreaSqFt": "ds",
-      "ConstructedYear": "sdf",
-      "Rate": "sdf",
-      "Image": "as",
+      "BuildingType": "Residential Building",
+      "Address": "A/14 Thudiyalor,Coimbatore",
+      "AreaSqFt": "10000",
+      "ConstructedYear": "2023-05-10",
+      "Rate": "10L",
+      "Image": "https://www.melivecode.com/users/1.png",
+      "id": 1
+    },
+    {
+      "BuildingType": "hi",
+      "Address": "",
+      "AreaSqFt": "",
+      "ConstructedYear": "",
+      "Rate": "",
+      "Image": "",
       "id": 2
-    },
-    {
-      "BuildingType": "dfgh",
-      "Address": "",
-      "AreaSqFt": "",
-      "ConstructedYear": "",
-      "Rate": "",
-      "Image": "",
-      "id": 4
-    },
-    {
-      "BuildingType": "",
-      "Address": "",
-      "AreaSqFt": "",
-      "ConstructedYear": "",
-      "Rate": "",
-      "Image": "",
-      "id": 5
-    },
-    {
-      "BuildingType": "",
-      "Address": "",
-      "AreaSqFt": "",
-      "ConstructedYear": "",
-      "Rate": "",
-      "Image": "",
-      "id": 6
-    },
-    {
-      "BuildingType": "",
-      "Address": "",
-      "AreaSqFt": "",
-      "ConstructedYear": "",
-      "Rate": "",
-      "Image": "",
-      "id": 7
-    },
-    {
-      "BuildingType": "",
-      "Address": "",
-      "AreaSqFt": "",
-      "ConstructedYear": "",
-      "Rate": "",
-      "Image": "",
-      "id": 8
-    },
-    {
-      "BuildingType": "",
-      "Address": "",
-      "AreaSqFt": "",
-      "ConstructedYear": "",
-      "Rate": "",
-      "Image": "",
-      "id": 9
-    },
-    {
-      "BuildingType": "",
-      "Address": "",
-      "AreaSqFt": "",
-      "ConstructedYear": "",
-      "Rate": "",
-      "Image": "",
-      "id": 10
-    },
-    {
-      "BuildingType": "",
-      "Address": "",
-      "AreaSqFt": "",
-      "ConstructedYear": "",
-      "Rate": "",
-      "Image": "",
-      "id": 11
     }
   ]
 }
