@@ -6,7 +6,7 @@
       "AreaSqFt": "20000",
       "ConstructedYear": "2022-05-10",
       "Rate": "10L",
-      "Image": "https://api.makemyhouse.com/public/Media/rimage/1024/designers_project/1583579237_37.jpg?watermark=false",
+      "Image": "assets/images/Residential.webp",
       "id": 1
     },
     {
@@ -15,7 +15,7 @@
       "AreaSqFt": "1000",
       "ConstructedYear": "2022-03-10",
       "Rate": "20L",
-      "Image": "https://images.unsplash.com/photo-1616512659455-111d3367649f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+      "Image": "assets/images/education.avif",
       "id": 2
     },
     {
@@ -23,8 +23,8 @@
       "Address": "A/14 Thudiyalor,Coimbatore",
       "AreaSqFt": "10000",
       "ConstructedYear": "2023-05-10",
-      "Rate": "30L",
-      "Image": "https://www.nasa.gov/sites/default/files/thumbnails/image/ksc-20180226-vab.jpg",
+      "Rate": "30.5L",
+      "Image": "assets/images/industrial.jpg",
       "id": 3
     },
     {
@@ -33,26 +33,8 @@
       "AreaSqFt": "10000",
       "ConstructedYear": "2023-05-10",
       "Rate": "50L",
-      "Image": "https://img.freepik.com/free-photo/glassclad-skyscrapers-central-mumbai-reflecting-sunset-hues-blue-hour_469504-15.jpg?w=740&t=st=1683109175~exp=1683109775~hmac=46d7c97806aa9148ec5821996ba7af458125b318508529234408849796507b4a",
+      "Image": "assets/images/assembly.jpg",
       "id": 4
-    },
-    {
-      "BuildingType": "sdf",
-      "Address": "sdf",
-      "AreaSqFt": "sdf",
-      "ConstructedYear": "2023-05-17",
-      "Rate": "as",
-      "Image": "C:\\fakepath\\8104.jpg",
-      "id": 5
-    },
-    {
-      "BuildingType": "sdf",
-      "Address": "d9087979",
-      "AreaSqFt": "fgh",
-      "ConstructedYear": "2023-05-16",
-      "Rate": "fgh54765",
-      "Image": "C:\\fakepath\\8104.jpg",
-      "id": 6
     }
   ]
 }

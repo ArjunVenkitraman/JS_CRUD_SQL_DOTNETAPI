@@ -31,7 +31,7 @@ body{
         overflow: hidden;
         display: flex;
         align-items: center;
-        height: 60px;
+        height: 75px;
       }
   
       .navbar-brand {
