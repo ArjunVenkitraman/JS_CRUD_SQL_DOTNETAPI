@@ -49,6 +49,16 @@
       "Image": "assets/images/education.avif",
       "map": "https://goo.gl/maps/8pb41QRpib775UVT7",
       "id": 5
+    },
+    {
+      "BuildingType": "Educational Buildings",
+      "Address": "PSG,Coimbatore",
+      "AreaSqFt": "90000",
+      "ConstructedYear": "2000-01-05",
+      "Rate": "5cr",
+      "Image": "assets/images/education.avif",
+      "map": "https://goo.gl/maps/8pb41QRpib775UVT7",
+      "id": 6
     }
   ]
 }
