@@ -26,14 +26,14 @@ function loadTable() {
           '<td><button type="button" class="btn btn-outline-secondary" onclick="showUserEditBox(' +
           object["id"] +
           ')"><i class="fa-solid fa-file-pen text-warning" "></i></button>&nbsp';
-        // trHTML +=
-        // '<td><a href="https://www.google.com/maps/@10.3513967,77.6882634,8z"><button type="button" class="btn btn-outline-primary" onclick="showUserEditBox(' +
-        // object["id"] +
-        // ')"><i class="fa-solid fa-file-pen text-warning" "></i></button></a>&nbsp';
         trHTML +=
           '<button type="button" class="btn btn-outline-danger" onclick="userDelete(' +
           object["id"] +
           ')"><i class="fa-solid fa-trash  fa-sm" style="color: #ff3300;"></i></button></td>';
+          trHTML +=
+          '<td><a href="https://www.google.com/maps/@10.3513967,77.6882634,8z"><button type="button" class="btn btn-outline-primary" onclick="showUserEditBo0x(' +
+          object["id"] +
+          ')"><i class="fa-solid fa-file-pen text-warning" "></i></button></a>&nbsp</td>';
         trHTML += "</tr>";
       }
       document.getElementById("mytable").innerHTML = trHTML;
@@ -91,7 +91,7 @@ function showUserCreateBox() {
     title: "Load building",
     html:
       '<input id="id" type="hidden"><br>' +
-      '<i class="fa-solid fa-building-wheat fa-xl"></i> <select id="BuildingType" class="swal2-input" style="width:62%"> <option value="Residential Building">None</option><option value="Residential Building">Residential Building</option> <option value="Educational Buildings">Educational Buildings</option> <option value="Institutional Buildings">Institutional Buildings</option> <option value="Assembly Buildings">Assembly Buildings</option></select><br>' +
+      '<i class="fa-solid fa-building-wheat fa-xl"></i> <select id="BuildingType" class="swal2-input" style="width:62%"> <option value="Residential Buildin">None</option><option value="Residential Building">Residential Building</option> <option value="Educational Buildings">Educational Buildings</option> <option value="Institutional Buildings">Institutional Buildings</option> <option value="Assembly Buildings">Assembly Buildings</option><option value="others">Others</option></select><br>' +
       '<i class="fa-solid fa-address-card fa-xl"></i><input id="Address" class="swal2-input" placeholder="Address"><br>' +
       '<i class="fa-solid fa-chart-area fa-xl"></i></i><input id="AreaSqFt" class="swal2-input" placeholder="AreaSqFt"><br>' +
       '<i class="fa-solid fa-calendar-days fa-xl"></i><input id="ConstructedYear" class="swal2-input" type="date" placeholder="ConstructedYear" style="width:62%"><br>' +
@@ -115,7 +115,7 @@ function userCreate() {
 
   if (BuildingType === "Residential Building") {
     Image = "assets/images/Residential.webp";
-  } else if (BuildingType === "	Educational Buildings") {
+  } else if (BuildingType === "Educational Buildings") {
     Image = "assets/images/education.avif";
   }
   else if (BuildingType === "Institutional Buildings") {
@@ -140,7 +140,6 @@ function userCreate() {
         ConstructedYear: ConstructedYear,
         Rate: Rate,
         Image: Image,
-
       })
     );
     xhttp.onreadystatechange = function () {
@@ -154,7 +153,6 @@ function userCreate() {
     };
   }
   loadTable();
-
 }
 
 function validate() {
@@ -186,7 +184,7 @@ function validate() {
 
     Swal.fire({
       title: "Invalid Input",
-      text: "Age should only contain numbers",
+      text: "AreaSqFt should only contain numbers",
       icon: "error",
       showConfirmButton: true
     })
@@ -195,7 +193,7 @@ function validate() {
   if (!Rate.match(rateReg)) {
     Swal.fire({
       title: "Invalid Input",
-      text: "Please follow the format (dd-mm-yyyy) for the date  field",
+      text: "It can contain only numbers",
       icon: "error",
       showConfirmButton: true
     })
@@ -257,7 +255,7 @@ function showUserEditBox(id) {
           '">' +
           '<input id="Rate" class="swal2-input" placeholder="Rate" value="' +
           objects["Rate"] +
-          '">' + '<input id="Image" class="swal2-input" disabled placeholder="Image" value="' +
+          '">' + '<input id="Image" class="swal2-input" type="hidden" placeholder="Image" value="' +
           objects["Image"] +
           '">',
         preConfirm: () => {
@@ -277,7 +275,7 @@ function userEdit(id) {
   const Rate = document.getElementById("Rate").value;
   const Image = document.getElementById("Image").value;
 
-  if (validate()) {
+  if (validateedit()) {
     const xhttp = new XMLHttpRequest();
     xhttp.open("PUT", `http://localhost:3000/buildingSale/${id}`);
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -297,7 +295,7 @@ function userEdit(id) {
         const objects = JSON.parse(this.responseText);
         Swal.fire({
           title: "Updated!",
-          text: "The user has been updated.",
+          text: "The data has been updated.",
           icon: "success",
           timerProgressBar: true,
         });
@@ -307,7 +305,7 @@ function userEdit(id) {
   }
 }
 
-function validate() {
+function validateedit() {
   const BuildingType = document.getElementById("BuildingType").value;
   const Address = document.getElementById("Address").value;
   const AreaSqFt = document.getElementById("AreaSqFt").value;
