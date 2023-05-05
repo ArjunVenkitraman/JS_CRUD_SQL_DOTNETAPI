@@ -2,57 +2,53 @@
   "buildingSale": [
     {
       "BuildingType": "Residential Building",
-      "Address": "Kongu,Coimbatore",
+      "Address": "A/14 Thudiyalor,Coimbatore",
       "AreaSqFt": "20000",
       "ConstructedYear": "2022-05-10",
       "Rate": "10L",
       "Image": "assets/images/Residential.webp",
-      "id": 1
+      "id": 1,
+      "map": "https://goo.gl/maps/NSP7b5U9MkuXL1Hd6"
     },
     {
       "BuildingType": "Educational Buildings",
-      "Address": "A Mallinam,Palakkad",
+      "Address": "A/D Mallinam,Palakkad",
       "AreaSqFt": "1000",
       "ConstructedYear": "2022-03-10",
       "Rate": "20L",
       "Image": "assets/images/education.avif",
+      "map": "https://goo.gl/maps/8pb41QRpib775UVT7",
       "id": 2
     },
     {
       "BuildingType": "Institutional Buildings",
-      "Address": "A/14 Thudiyalor,Coimbatore",
+      "Address": "Peelamedu,Coimbatore",
       "AreaSqFt": "10000",
-      "ConstructedYear": "2023-05-10",
+      "ConstructedYear": "2023-02-10",
       "Rate": "30.5L",
       "Image": "assets/images/industrial.jpg",
-      "id": 3
+      "id": 3,
+      "map": "https://goo.gl/maps/XA39iaNmocZ4t4kN7"
     },
     {
       "BuildingType": "Assembly Buildings",
-      "Address": "A/14 Thudiyalor,Coimbatore",
+      "Address": "Kongu,Coimbatore",
       "AreaSqFt": "70000",
-      "ConstructedYear": "2023-05-01",
+      "ConstructedYear": "2022-03-01",
       "Rate": "70L",
       "Image": "assets/images/assembly.jpg",
-      "id": 4
+      "id": 4,
+      "map": "https://goo.gl/maps/9UHAxkzZ8mDZ5e2p7"
     },
     {
       "BuildingType": "Educational Buildings",
-      "Address": "A/14 Thudiyalor,Coimbatore",
+      "Address": "TownCity Thudiyalor,Coimbatore",
       "AreaSqFt": "10000",
       "ConstructedYear": "2023-05-02",
-      "Rate": "30L",
-      "Image": "assets/images/default.svg",
+      "Rate": "60L",
+      "Image": "assets/images/education.avif",
+      "map": "https://goo.gl/maps/8pb41QRpib775UVT7",
       "id": 5
-    },
-    {
-      "BuildingType": "Residential Building",
-      "Address": "A/14 Thudiyalor,Coimbatore",
-      "AreaSqFt": "10000",
-      "ConstructedYear": "2023-05-15",
-      "Rate": "30L",
-      "Image": "assets/images/Residential.webp",
-      "id": 6
     }
   ]
 }

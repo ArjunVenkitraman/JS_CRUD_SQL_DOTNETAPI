@@ -31,9 +31,9 @@ function loadTable() {
           object["id"] +
           ')"><i class="fa-solid fa-trash  fa-sm" style="color: #ff3300;"></i></button></td>';
           trHTML +=
-          '<td><a href="https://www.google.com/maps/@10.3513967,77.6882634,8z"><button type="button" class="btn btn-outline-primary" onclick="showUserEditBo0x(' +
+          '<td><a href='+object["map"]+' target="_blank"><button type="button" class="btn btn-outline-primary" onclick="showUserEditBo0x(' +
           object["id"] +
-          ')"><i class="fa-solid fa-file-pen text-warning" "></i></button></a>&nbsp</td>';
+          ')"><i class="fa-sharp fa-solid fa-location-dot fa-xl" style="color: #095cec;"></i></button></a>&nbsp</td>';
         trHTML += "</tr>";
       }
       document.getElementById("mytable").innerHTML = trHTML;
@@ -110,22 +110,28 @@ function userCreate() {
   const ConstructedYear = document.getElementById("ConstructedYear").value;
   const Rate = document.getElementById("Rate").value;
   var Image;
+  var map;
 
   // Set default image if no file is selected
 
   if (BuildingType === "Residential Building") {
     Image = "assets/images/Residential.webp";
+    map="https://goo.gl/maps/NSP7b5U9MkuXL1Hd6";
   } else if (BuildingType === "Educational Buildings") {
     Image = "assets/images/education.avif";
+    map="https://goo.gl/maps/8pb41QRpib775UVT7";
   }
   else if (BuildingType === "Institutional Buildings") {
     Image = "assets/images/industrial.jpg";
+    map="https://goo.gl/maps/XA39iaNmocZ4t4kN7";
   }
   else if (BuildingType === "Assembly Buildings") {
     Image = "assets/images/assembly.jpg";
+    map="https://goo.gl/maps/9UHAxkzZ8mDZ5e2p7";
   }
   else {
     Image = "assets/images/default.svg";
+    map="https://goo.gl/maps/D2SZ2fBAJPZAVzAe9";
   }
 
   if (validate() == true) {
@@ -140,6 +146,7 @@ function userCreate() {
         ConstructedYear: ConstructedYear,
         Rate: Rate,
         Image: Image,
+        map:map
       })
     );
     xhttp.onreadystatechange = function () {
